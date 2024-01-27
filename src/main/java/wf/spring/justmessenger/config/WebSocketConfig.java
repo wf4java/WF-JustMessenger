@@ -33,6 +33,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
         registry.enableSimpleBroker("/topic", "/user");
         registry.setApplicationDestinationPrefixes("/messenger");
         registry.setUserDestinationPrefix("/user");
+
     }
 
     @Bean
