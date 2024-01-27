@@ -16,7 +16,6 @@ import wf.spring.justmessenger.security.subscribe.WebSocketSubscribeInterceptor;
 
 
 
-
 @Configuration
 @EnableWebSocket
 @EnableWebSocketMessageBroker

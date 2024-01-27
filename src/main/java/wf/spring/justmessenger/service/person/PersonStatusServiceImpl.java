@@ -25,10 +25,10 @@ import java.util.concurrent.ConcurrentHashMap;
 @RequiredArgsConstructor
 public class PersonStatusServiceImpl implements PersonStatusService {
 
-    @Autowired
-    @Lazy
-    private PersonService personService;
 
+    @Lazy
+    @Autowired
+    private PersonService personService;
     private final MongoTemplate mongoTemplate;
     private final MessengerMessagingTemplate messengerMessagingTemplate;
     private final Map<ObjectId, SessionsStatus> personStatusMap = new ConcurrentHashMap<>();

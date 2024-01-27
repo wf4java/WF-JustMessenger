@@ -2,6 +2,8 @@ package wf.spring.justmessenger.service.chat.group_chat;
 
 import lombok.RequiredArgsConstructor;
 import org.bson.types.ObjectId;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
@@ -25,10 +27,11 @@ import java.util.List;
 @RequiredArgsConstructor
 public class GroupChatParticipantServiceImpl implements GroupChatParticipantService {
 
-
+    @Lazy
+    @Autowired
+    private GroupChatService groupChatService;
     private final MongoTemplate mongoTemplate;
     private final SubscribeService subscribeService;
-    private final GroupChatService groupChatService;
     private final GroupChatAccessService groupChatAccessService;
     private final GroupChatParticipantMapper groupChatParticipantMapper;
     private final MessengerMessagingTemplate messengerMessagingTemplate;

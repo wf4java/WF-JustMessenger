@@ -2,6 +2,8 @@ package wf.spring.justmessenger.service.chat.single_chat;
 
 import lombok.RequiredArgsConstructor;
 import org.bson.types.ObjectId;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 import wf.spring.justmessenger.entity.chat.SingleChat;
 import wf.spring.justmessenger.entity.person.Person;
@@ -15,11 +17,12 @@ import wf.spring.justmessenger.service.person.PersonService;
 @RequiredArgsConstructor
 public class SingleChatAccessServiceImpl implements SingleChatAccessService {
 
-
-    private final SingleChatService singleChatService;
+    @Lazy
+    @Autowired
+    private SingleChatService singleChatService;
+    private final PersonService personService;
     private final MessageService messageService;
     private final AttachmentService attachmentService;
-    private final PersonService personService;
 
 
     @Override
