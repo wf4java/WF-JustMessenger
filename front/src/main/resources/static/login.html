@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>JustMessenger</title>
+    <link rel="stylesheet" href="login/style.css">
+</head>
+<body>
+<div class="login-box">
+    <div class="login-text">Log-in</div>
+    <form>
+        <label>
+            <input id="username" type="text" name="username" placeholder="Username" onkeypress="usernameInputKeyPress(event)">
+        </label>
+        <br>
+        <label>
+            <input id="password" type="password" name="password" placeholder="Password" onkeypress="passwordInputKeyPress(event)">
+        </label>
+        <br>
+        <div style="display: flex">
+            <button class="p-button" type="button" onclick="toSignUpPage()">Signup(P)</button>
+            <button type="button" onclick="logIn()">Login</button>
+        </div>
+
+    </form>
+</div>
+
+<div id="error_message_box" class="hidden">
+    <p class="error_p">Errors</p>
+    <div id="error_messages">
+
+    </div>
+</div>
+
+</body>
+<script src="login/script.js"></script>
+</html>

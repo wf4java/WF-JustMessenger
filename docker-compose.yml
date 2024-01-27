@@ -1,0 +1,120 @@
+version: '3.5'
+
+services:
+
+  WF-JustMessengerFrontend:
+    image: wf-justmessenger_front:1.0
+    container_name: WF-JustMessenger_Frontend
+    build:
+      context: ./front
+      dockerfile: Dockerfile
+    depends_on:
+      - WF-JustMessengerBackend
+    networks:
+      - default
+    restart: unless-stopped
+    ports:
+      - "80:8080"
+
+
+
+  WF-JustMessengerBackend:
+    image: wf-justmessenger:1.0
+    container_name: WF-JustMessenger_Backend
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - mongoDB
+      - minio
+      - elasticsearch
+    restart: unless-stopped
+    networks:
+      - default
+      - wf-justmessenger
+    ports:
+      - "8002:8080"
+    environment:
+      - SPRING_DATA_MONGODB_HOST=mongoDB
+      - SPRING_DATA_MONGODB_PORT=27017
+      - SPRING_DATA_MONGODB_DATABASE=WF-JustMessenger
+      - SPRING_DATA_MONGODB_AUTHENTICATION_DATABASE=admin
+      - SPRING_DATA_MONGODB_AUTO_INDEX_CREATION=true
+      - SPRING_ELASTICSEARCH_URIS=http://elasticsearch:9200
+      - SPRING_MINIO_URL=http://minio:9000
+      - SPRING_MINIO_ACCESS_KEY=minioadmin
+      - SPRING_MINIO_SECRET_KEY=minioadmin
+      - SPRING_MINIO_BUCKET=justmessenger
+      - SPRING_SECURITY_CORS_ALLOWED_ORIGINS=http://194.169.160.253, http://localhost:8080, http://localhost:63342
+
+
+  mongoDB:
+    image: mongo:7.0
+    container_name: WF-JustMessenger_mongoDB
+    restart: unless-stopped
+    networks:
+      - wf-justmessenger
+    ports:
+      - "27017:27017"
+    volumes:
+      - ~/docker/WF-JustMessenger/data/mongodb:/data/db
+
+
+  minio:
+    image: minio/minio
+    container_name: WF-JustMessenger_minio
+    restart: unless-stopped
+    networks:
+      - wf-justmessenger
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    volumes:
+      - ~/docker/WF-JustMessenger/data/minio:/data
+    command: server --console-address ":9001" /data
+
+
+  elasticsearch:
+    image: elasticsearch:8.10.4
+    container_name: WF-JustMessenger_elasticsearch
+    restart: unless-stopped
+    environment:
+      - discovery.type=single-node
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - xpack.security.enabled=false
+      - network.host=0.0.0.0
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    networks:
+      - wf-justmessenger
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    volumes:
+      - ~/docker/WF-JustMessenger/data/elasticsearch:/usr/share/elasticsearch/data
+
+
+
+
+
+
+
+
+
+
+
+networks:
+  default:
+    attachable: true
+    internal: false
+
+  wf-justmessenger:
+    attachable: true
+    external: false
+    driver: bridge
+    internal: true
+
+

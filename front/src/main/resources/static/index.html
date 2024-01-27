@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JustMessenger</title>
+    <link rel="stylesheet" href="chat/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+</head>
+<body>
+    <div class="menu_box hidden" id="edit_profile_menu_box" onclick="hideOnClick(event)">
+        <div class="menu" id="edit_profile_menu">
+            <p class="headline">Profile</p>
+            <div id="person_info">
+                <img class="profile_photo_my" src="" alt="My profile photo">
+                <div class="edit_person_box">
+                    <div class="username">
+                        <p id="change_username_p" onkeyup="changeUsernameOnKeyUp(event)">Username</p>
+                        <img src="images/icons/edit.png" alt="Change username button" id="edit_username_button" onclick="changeUsernameEditable(event)">
+                        <img src="images/icons/check.png" alt="Change username button" id="change_username_accept_button" onclick="changeUsernameButton(event)">
+                    </div>
+                    <div class="edit_profile_photo">
+                        <input type="button" class="button" id="profile_photo_input" value="Select image" onclick="document.getElementById('profile_photo_input_file').click();" />
+                        <input type="file" style="display:none;" id="profile_photo_input_file" accept="image/*" name="file" onchange="onProfilePhotoSelect(event)"/>
+
+                        <input type="button" class="button" id="upload_profile_photo" onclick="onProfilePhotoUpload(event)" value="Upload"/>
+                        <input type="button" class="button" id="delete_profile_photo" onclick="onProfilePhotoDelete(event)" value="Delete avatar"/>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="menu_box hidden" id="create_group_chat_menu_box" onclick="hideOnClick(event)">
+        <div class="menu" id="create_group_chat_menu">
+            <p class="headline">Create Group Chat</p>
+            <div id="create_group_chat_menu_c">
+                <div id="create_group_chat_options_box">
+                    <input type="text" id="group_chat_create_name" placeholder="Group name" onkeyup="onChangeGroupChatCreateKeyUp(event)">
+                    <div id="create_group_chat_selected_persons_box">
+
+                    </div>
+                </div>
+                <div id="create_group_chat_select_persons_box">
+                    <input type="text" id="create_group_chat_search_input" placeholder="Search">
+                    <div id="create_group_chat_select_persons_search_box">
+
+                    </div>
+                </div>
+            </div>
+            <input type="button" id="create_group_chat_button" value="Create" onclick="createGroupChat(event)">
+
+        </div>
+    </div>
+
+    <div class="menu_box hidden" id="group_chat_show_menu_box" onclick="hideOnClick(event)">
+        <div class="menu" id="group_chat_show_menu">
+            <p class="headline">Group Chat</p>
+            <div style="display: flex">
+                <div>
+                    <div id="group_chat_show_info">
+                        <p id="change_group_show_chat_name">Name</p>
+                        <img id="group_chat_show_show_profile_photo" src="">
+                        <input type="button" name="Leave" id="group_chat_leave_button" value="Leave" onclick="onGroupChatLeave(event)">
+                    </div>
+                </div>
+
+                <div id="group_chat_show_participants">
+
+                    <div id="group_chat_show_participant_box">
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="menu_box menu_box_h hidden" id="group_chat_edit_menu_box" onclick="hideOnClick(event)">
+        <div class="menu" id="group_chat_edit_menu">
+            <p class="headline">Group Chat</p>
+            <div style="display: flex">
+                <div>
+                    <div id="group_chat_edit_info">
+                        <img id="group_chat_show_profile_photo" src="" alt="Group chat profile photo">
+                        <div class="group_chat_edit_box">
+                            <div class="username">
+                                <p id="change_group_chat_name" onkeyup="changeGroupChatNameOnKeyUp(event)">Name</p>
+                                <img src="images/icons/edit.png" alt="Change username button" id="edit_group_chat_name_button" onclick="changeGroupChatNameEditable(event)">
+                                <img src="images/icons/check.png" alt="Change username button" id="change_group_chat_name_accept_button" onclick="changeGroupChatNameButton(event)">
+                            </div>
+                            <div class="edit_group_chat_profile_photo">
+                                <input type="button" class="button" id="group_chat_profile_photo_input" value="Select image" onclick="document.getElementById('group_chat_profile_photo_input_file').click();" />
+                                <input type="file" style="display:none;" id="group_chat_profile_photo_input_file" accept="image/*" name="file" onchange="onGroupChatProfilePhotoSelect(event)"/>
+
+                                <input type="button" class="button" id="group_chat_upload_profile_photo" onclick="onGroupChatProfilePhotoUpload(event)" value="Upload"/>
+                                <input type="button" class="button" id="group_chat_delete_profile_photo" onclick="onGroupChatProfilePhotoDelete(event)" value="Delete avatar"/>
+                            </div>
+                        </div>
+                    </div>
+                    <input type="button" class="delete_button" id="" onclick="onGroupChatDelete(event)" value="Delete Group Chat"/>
+                </div>
+
+                <div id="group_chat_edit_participants">
+                    <div style="display: flex" class="search_box">
+                        <input type="text" placeholder="Search" name="Search" id="participant_search">
+                        <img src="images/icons/add.png" id="participant_toggle" onclick="onChangeParticipantMode(event)">
+                    </div>
+                    <div id="group_chat_participant_box">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div id="box">
+        <div id="left_box">
+
+            <div id="search_box">
+                <input type="text" id="search_input" placeholder="Search">
+                <div id="open_options_button" onclick="openOptionButton(event)">
+                    <img src="images/icons/menu.png" alt="Menu">
+                </div>
+            </div>
+
+            <div id="options_box" class="hidden_v">
+                <div class="menu_button">
+                    <img src="images/icons/settings.png" alt="Settings">
+                </div>
+
+                <div class="menu_button" onclick="openProfileEditMenu(event)">
+                    <img src="images/icons/edit_profile.png" alt="Edit profile">
+                </div>
+
+                <div class="menu_button" onclick="openCreateGroupChatMenu(event)">
+                    <img src="images/icons/create_group.png" alt="Create group chat">
+                </div>
+            </div>
+
+            <div id="chat_list_box">
+
+
+            </div>
+        </div>
+        <div id="chat_box">
+            <div id="chat_messages_box">
+                <div id="chat_messages" onscroll="chatScroll(event)">
+
+
+
+                </div>
+
+            </div>
+            <div id="send_message_box">
+                <div id="send_message">
+                    <div id="send_message_other_box">
+                        <img src="images/icons/other.png" alt="other">
+                    </div>
+
+                    <div id="send_message_send_input_box">
+                        <input type="text" id="message_text" placeholder="Message text" onkeyup="sendMessageInputKeyUp(event)" onkeypress="sendMessageInputKeyPress(event)">
+                    </div>
+
+                    <div id="send_message_send_box" class="unsendable" onclick="sendMessageButton(event)">
+                        <img src="images/icons/send_message.png" alt="send_message">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="error_message_box" class="hidden">
+        <p class="error_p">Errors</p>
+        <div id="error_messages">
+
+        </div>
+    </div>
+
+
+</body>
+<script src="chat/scripts/class.js"></script>
+<script src="chat/scripts/utils.js"></script>
+<script src="chat/scripts/const.js"></script>
+<script src="chat/scripts/handler.js"></script>
+<script src="chat/scripts/message.js"></script>
+<script src="chat/scripts/socket.js"></script>
+<script src="chat/scripts/chat.js"></script>
+<script src="chat/scripts/person.js"></script>
+<script src="chat/scripts/group.js"></script>
+<script src="chat/scripts/participant.js"></script>
+<script src="chat/scripts/div.js"></script>
+<script src="chat/scripts/script.js"></script>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
