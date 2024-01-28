@@ -171,15 +171,15 @@ async function changeGroupChatProfilePhotoDelete(chatId) {
 
     let chatDiv = document.getElementsByClassName("group_chat_by_id_" + chatId);
     if(chatDiv.length === 0) return;
-    chatDiv[0].querySelector(".profile_photo_box img").src = "../images/empty_group_chat_profile_photo.png";
+    chatDiv[0].querySelector(".profile_photo_box img").src = "images/empty_group_chat_profile_photo.png";
 
     if(selectedToEditGroupChatId === chatId){
-        document.getElementById("group_chat_show_profile_photo").src = "../images/empty_group_chat_profile_photo.png";
+        document.getElementById("group_chat_show_profile_photo").src = "images/empty_group_chat_profile_photo.png";
         document.getElementById("delete_profile_photo").classList.remove("active")
     }
 
     if(selectedToShowGroupChatId === chatId)
-        document.getElementById("group_chat_show_show_profile_photo").src = "../images/empty_group_chat_profile_photo.png";
+        document.getElementById("group_chat_show_show_profile_photo").src = "images/empty_group_chat_profile_photo.png";
 
 }
 

@@ -46,7 +46,7 @@ async function getMyPerson() {
 async function loadMyPerson() {
     myPerson = await getMyPerson();
     changeUsernameP.textContent = myPerson.username;
-    document.querySelector(".profile_photo_my").src = myPerson.hasProfilePhoto ? (await getPersonProfilePhotoWithUpdate(myPerson.id)).url : `../images/empty_profile_photo.svg`;
+    document.querySelector(".profile_photo_my").src = myPerson.hasProfilePhoto ? (await getPersonProfilePhotoWithUpdate(myPerson.id)).url : `images/empty_profile_photo.svg`;
     if(myPerson.hasProfilePhoto){
         document.getElementById("delete_profile_photo").classList.add("active");
     } else {
@@ -59,7 +59,7 @@ async function loadMyPerson() {
                 = (await getPersonProfilePhotoWithUpdate(myPerson.id)).url;
         } else {
             document.getElementsByClassName("person_chat_by_id_" + id)[0].querySelector(".profile_photo_box img").src
-                = "../images/empty_profile_photo.svg";
+                = "images/empty_profile_photo.svg";
         }
     }
 
@@ -139,7 +139,7 @@ async function changePersonProfilePhotoDelete(personId) {
 
     let chatDiv = document.getElementsByClassName("person_chat_by_id_" + personId);
     if(chatDiv.length === 0) return;
-    chatDiv[0].querySelector(".profile_photo_box img").src = "../images/empty_profile_photo.svg";
+    chatDiv[0].querySelector(".profile_photo_box img").src = "images/empty_profile_photo.svg";
 }
 
 async function uploadProfilePhoto(image) {

@@ -297,13 +297,13 @@ function displayError(message) {
 
 async function getPersonProfilePhotoSrc(personId) {
     let person = await getPersonById(personId)
-    if(person == null || !person.hasProfilePhoto) return "../images/empty_profile_photo.svg";
+    if(person == null || !person.hasProfilePhoto) return "images/empty_profile_photo.svg";
     return (await getPersonProfilePhoto(personId)).url;
 }
 
 async function getGroupChatProfilePhotoSrc(groupChatId) {
     let groupChat = await getChatByChatIdAndType(groupChatId, "group_chat");
-    if(groupChat == null || !groupChat.hasProfilePhoto) return "../images/empty_group_chat_profile_photo.png";
+    if(groupChat == null || !groupChat.hasProfilePhoto) return "images/empty_group_chat_profile_photo.png";
     return (await getGroupChatProfilePhoto(groupChat.chatId)).url;
 }
 

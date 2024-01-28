@@ -81,6 +81,7 @@ button {
 
 .p-button {
     border: 5px solid #4327a6;
+    font-size: 35px;
 }
 
 .p-button:hover {
