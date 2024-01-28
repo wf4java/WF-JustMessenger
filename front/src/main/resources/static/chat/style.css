@@ -193,7 +193,7 @@ body {
 }
 
 .selected_chat {
-
+    box-shadow: 0 0 0 4px rebeccapurple;
 }
 
 .chat .chat_username {

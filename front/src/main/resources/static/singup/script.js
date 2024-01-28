@@ -1,5 +1,5 @@
 const host = "http://" + window.location.host.split(':')[0] + ":8002";
-
+//const host = "http://194.169.160.253:8002"
 function setCookie(name, value, h) {
     const expires = new Date();
     expires.setTime(expires.getTime() + (h * 60 * 60 * 1000));

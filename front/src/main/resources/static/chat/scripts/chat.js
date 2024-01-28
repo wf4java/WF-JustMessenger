@@ -116,7 +116,19 @@ async function loadChats() {
         else if(chat instanceof GroupChat)
             subscribeToGroupChatTopic(chat.chatId);
     }
+
+
+    if(chats.length === 0) {
+        await loadMyFavoritesChatIfNotExits();
+    }
+
 }
+
+async function loadMyFavoritesChatIfNotExits() {
+    if(document.getElementsByClassName("person_chat_by_id_" + id).length !== 0) return;
+    await addToSearchChat(myPerson);
+}
+
 
 async function addGroupChatToStart(groupChat) {
     chatMap[groupChat.chatId] = groupChat;
@@ -140,7 +152,16 @@ async function removeGroupChat(groupChatId) {
 
 async function selectChat(event, chatId, type) {
     if(event.currentTarget.classList.contains("selected_chat")) return;
-    if(event.currentTarget.classList.contains("un_search") && type === "search_chat") return;
+    if(event.currentTarget.classList.contains("un_search") && type === "search_chat") {
+        for (let chatMapKey in chatMap) {
+            const chat = chatMap[chatMapKey];
+            if(!(chat instanceof SingleChat)) continue
+            if(chat.othetPersonId === chatId){
+                chatId = chat.chatId;
+                type = "single_chat"
+            }
+        }
+    }
 
     for (const element of document.getElementsByClassName("selected_chat")) {
         element.classList.remove("selected_chat");
@@ -181,7 +202,7 @@ async function singleChatNewMessage(message) {
         searchChatDiv.classList.add("chat_by_id_" + message.chatId);
         searchChatDiv.classList.add("un_search");
 
-        searchChatDiv.addEventListener("onclick", () => selectChat(event, `${message.chatId}`, "single_chat"))
+        //searchChatDiv.addEventListener("onclick", () => selectChat(event, `${message.chatId}`, "single_chat"))
 
 
         getPersonStatus(selectedChatId).then((s) => {
@@ -260,6 +281,11 @@ async function showAllChats() {
     }
     for (let chatElement of document.getElementsByClassName("group_chat")) {
         chatElement.style.display = "flex"
+    }
+    if(document.getElementsByClassName("single_chat").length === 0 &&
+        document.getElementsByClassName("group_chat").length === 0 &&
+        document.getElementsByClassName("search_chat").length === 0) {
+        await loadMyFavoritesChatIfNotExits();
     }
 }
 
