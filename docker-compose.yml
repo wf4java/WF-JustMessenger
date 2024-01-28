@@ -8,8 +8,6 @@ services:
     build:
       context: ./front
       dockerfile: Dockerfile
-    depends_on:
-      - WF-JustMessengerBackend
     networks:
       - default
     restart: unless-stopped
