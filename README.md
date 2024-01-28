@@ -21,7 +21,6 @@ Not all functions have been added to the frontend that are
 ![Screen_1](https://github.com/wf4java/WF-JustMessenger/blob/master/img/img_1.png?raw=true)
 ![Screen_1](https://github.com/wf4java/WF-JustMessenger/blob/master/img/img_2.png?raw=true)
 ![Screen_1](https://github.com/wf4java/WF-JustMessenger/blob/master/img/img_3.png?raw=true)
-![Screen_1](https://github.com/wf4java/WF-JustMessenger/blob/master/img/img_4.png?raw=true)
 
 
 
