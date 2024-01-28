@@ -17,6 +17,13 @@ Not all functions have been added to the frontend that are
 
 
 ## Screens:
+
+<p float="left">
+  <img src="https://github.com/wf4java/WF-JustMessenger/blob/master/img/img_0.png" width="100" />
+  <img src="https://github.com/wf4java/WF-JustMessenger/blob/master/img/img_1.png" width="100" />
+  <img src="https://github.com/wf4java/WF-JustMessenger/blob/master/img/img_2.png" width="100" />
+  <img src="https://github.com/wf4java/WF-JustMessenger/blob/master/img/img_3.png" width="100" />
+</p>
 ![Screen_1](https://github.com/wf4java/WF-JustMessenger/blob/master/img/img_0.png?raw=true)
 ![Screen_1](https://github.com/wf4java/WF-JustMessenger/blob/master/img/img_1.png?raw=true)
 ![Screen_1](https://github.com/wf4java/WF-JustMessenger/blob/master/img/img_2.png?raw=true)
