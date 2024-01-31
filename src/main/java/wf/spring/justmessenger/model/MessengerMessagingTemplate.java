@@ -30,9 +30,6 @@ public class MessengerMessagingTemplate {
         simpMessagingTemplate.convertAndSend("/topic/group_chat/" + id, new SocketRsModel(GroupChatRsType.MESSAGE, object));
     }
 
-    public void convertAndSendToGroupChatParticipantLeave(String id, Object object) {
-        simpMessagingTemplate.convertAndSend("/topic/group_chat/" + id, new SocketRsModel(GroupChatRsType.PARTICIPANT_LEAVE, object));
-    }
 
     public void convertAndSendToGroupChatParticipantAdd(String id, Object object) {
         simpMessagingTemplate.convertAndSend("/topic/group_chat/" + id, new SocketRsModel(GroupChatRsType.PARTICIPANT_ADD, object));

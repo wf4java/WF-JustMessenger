@@ -1,4 +1,4 @@
-package wf.spring.justmessenger.controller.chat.group_chat;
+package wf.spring.justmessenger.dto.chat.group_chat;
 
 import jakarta.validation.constraints.NotNull;
 import lombok.*;

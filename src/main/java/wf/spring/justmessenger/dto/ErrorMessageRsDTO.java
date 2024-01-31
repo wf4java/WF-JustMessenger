@@ -4,15 +4,13 @@ import lombok.*;
 
 @Setter
 @Getter
-@NoArgsConstructor
 @AllArgsConstructor
 @ToString
 public class ErrorMessageRsDTO {
 
 
-    private String message;
-
-    private long timestamp;
+    private final String message;
+    private final long timestamp;
 
     public ErrorMessageRsDTO(String message) {
         this.message = message;
