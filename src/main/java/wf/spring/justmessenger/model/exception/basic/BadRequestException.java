@@ -43,9 +43,7 @@ public class BadRequestException extends HttpException {
         return STATUS;
     }
 
-    private static String getStringFromBindingResult(@Nullable BindingResult bindingResult){
-        if(bindingResult == null) return null;
-
+    private static String getStringFromBindingResult(BindingResult bindingResult){
         StringBuilder stringBuilder = new StringBuilder();
         for (FieldError error : bindingResult.getFieldErrors()) {
             if (!stringBuilder.isEmpty()) stringBuilder.append("\n");
