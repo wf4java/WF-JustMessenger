@@ -2,14 +2,21 @@ async function toGroupChatDiv(groupChat) {
     const lastMessageContent = groupChat.lastMessage ? groupChat.lastMessage.text : "Group chat create";
     const lastMessagePersonUsername = groupChat.lastMessage ? (await getPersonById(groupChat.lastMessage.senderId)).username + ":" : "";
 
-    const profilePhoto = groupChat.hasProfilePhoto ?
-        `<img src="${(await getGroupChatProfilePhoto(groupChat.chatId)).url}">` :
-        `<img src="images/empty_group_chat_profile_photo.png">`;
+
+    let profilePhotoUrl = groupChatProfilePhotoMap[groupChat.chatId] == null ? "images/empty_group_chat_profile_photo.png" : groupChatProfilePhotoMap[groupChat.chatId].url;
+    if(groupChatProfilePhotoMap.hasProfilePhoto && groupChatProfilePhotoMap[groupChat.chatId] == null) {
+        getGroupChatProfilePhoto(groupChat.chatId).then((p) => {
+            for (let element of document.getElementsByClassName("group_chat_profile_photo_by_id" + groupChat.chatId)) {
+                element.src = p.url;
+            }
+        });
+    }
+
 
     return `
         <div class="chat group_chat group_chat_by_id_${groupChat.chatId} chat_by_id_${groupChat.chatId}" ondblclick="openGroupChatMenu(event, '${groupChat.chatId}')" onclick="selectChat(event, '${groupChat.chatId}', 'group_chat')">
             <div class="profile_photo_box">
-                ${profilePhoto}
+                <img class="${"group_chat_profile_photo_by_id" + groupChat.chatId}" src="${profilePhotoUrl}">
             </div>
             <div class="chat_username_message">
                 <p class="chat_username">${groupChat.name + "(" + groupChat.participantCount +")"} </p>
@@ -21,15 +28,21 @@ async function toGroupChatDiv(groupChat) {
 }
 
 async function toSearchPersonChatDiv(person) {
-    const profilePhoto = person.hasProfilePhoto ?
-        `<img src="${(await getPersonProfilePhoto(person.id)).url}">` :
-        `<img src="images/empty_profile_photo.svg">`;
+    let profilePhotoUrl = personProfilePhotoMap[person.id] == null ? "images/empty_profile_photo.svg" : personProfilePhotoMap[person.id].url;
+    if(person.hasProfilePhoto && personProfilePhotoMap[person.id] == null) {
+        getPersonProfilePhoto(person.id).then((p) => {
+            for (let element of document.getElementsByClassName("person_profile_photo_by_id" + person.id)) {
+                element.src = p.url;
+            }
+        });
+    }
+
     const username = person.id === id ? "Favorites(Me)" : person.username;
 
     return `
         <div class="chat search_chat single_chat person_chat_by_id_${person.id}" onclick="selectChat(event, '${person.id}', 'search_chat')">
             <div class="profile_photo_box">
-                ${profilePhoto}
+                <img class="${"person_profile_photo_by_id" + person.id}" src="${profilePhotoUrl}">
                 <div class="status_circle ${person.status.toLowerCase()}"></div>
             </div>
             
@@ -44,17 +57,24 @@ async function toSearchPersonChatDiv(person) {
 
 async function toSingleChatDiv(singleChat) {
     const person = await getPersonById(singleChat.othetPersonId);
-    const profilePhoto = person.hasProfilePhoto ?
-        `<img src="${(await getPersonProfilePhoto(person.id)).url}">` :
-        `<img src="images/empty_profile_photo.svg">`;
+    let profilePhotoUrl = personProfilePhotoMap[person.id] == null ? "images/empty_profile_photo.svg" : personProfilePhotoMap[person.id].url;
+
 
     const username = person.id === id ? "Favorites(Me)" : person.username;
     const lastMessageBy = singleChat.lastMessage ? (singleChat.lastMessage.senderId === id ? "Me" : (person.gender != null ? (person.gender === "FEMALE" ? "She" : "He") : "He")) : "";
     const lastMessageContent = singleChat.lastMessage ? singleChat.lastMessage.text : "";
+
+    if(person.hasProfilePhoto && personProfilePhotoMap[person.id] == null) {
+        getPersonProfilePhoto(person.id).then((p) => {
+            for (let element of document.getElementsByClassName("person_profile_photo_by_id" + person.id)) {
+                element.src = p.url;
+            }
+        });
+    }
     return `
         <div class="chat single_chat single_chat_by_id_${singleChat.chatId} chat_by_id_${singleChat.chatId} person_chat_by_id_${singleChat.othetPersonId}" onclick="selectChat(event, '${singleChat.chatId}', 'single_chat')">
             <div class="profile_photo_box">
-                ${profilePhoto}
+                <img class="${"person_profile_photo_by_id" + person.id}" src="${profilePhotoUrl}">
                 <div class="status_circle ${person.status.toLowerCase()}"></div>
             </div>
             
@@ -95,16 +115,21 @@ async function toGroupChatLastMessageDiv(groupChat, message) {
 
 
 async function toMessageBox(message, person) {
-    const profilePhoto = person.hasProfilePhoto ?
-        `<img src="${(await getPersonProfilePhoto(person.id)).url}" class="in_message_profile_photo">` :
-        `<img src="images/empty_profile_photo.svg" class="in_message_profile_photo">`;
+    let profilePhotoUrl = personProfilePhotoMap[person.id] == null ? "images/empty_profile_photo.svg" : personProfilePhotoMap[person.id].url;
+    if(person.hasProfilePhoto && personProfilePhotoMap[person.id] == null) {
+        getPersonProfilePhoto(person.id).then((p) => {
+            for (let element of document.getElementsByClassName("person_profile_photo_by_id" + person.id)) {
+                element.src = p.url;
+            }
+        });
+    }
 
     return `
         <div class="user_message_box user_message_box_for_${person.username}">
-            ${profilePhoto}
+            <img class="in_message_profile_photo ${"person_profile_photo_by_id" + person.id}" src="${profilePhotoUrl}">
             <div class="messages_in_box">
 
-             </div>
+            </div>
         </div>
     `
 }

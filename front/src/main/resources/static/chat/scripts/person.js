@@ -3,7 +3,7 @@ const personProfilePhotoMap = {};
 
 async function getPersonById(id) {
     let person = personMap[id];
-    if(person !== undefined) return person;
+    if(person != null) return person;
 
     const response = await getRequestWithsParams("/api/person", {personId: id});
     person = Person.fromJson(await response.json());
