@@ -10,6 +10,7 @@ import org.springframework.messaging.simp.user.DestinationUserNameProvider;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import wf.spring.justmessenger.model.Gender;
+import wf.spring.justmessenger.utils.validators.annotation.Username;
 
 import java.security.Principal;
 import java.util.*;
@@ -25,16 +26,21 @@ public class Person implements Principal, DestinationUserNameProvider, UserDetai
 
 
     @Id
+    @NotNull
     private ObjectId id;
 
+    @NotNull
     @Indexed(unique = true)
     private String username;
 
+    @NotNull
     @Indexed(unique = true)
     private String email;
 
+    @NotNull
     private String password;
 
+    @NotNull
     private Boolean active;
 
     private Gender gender;

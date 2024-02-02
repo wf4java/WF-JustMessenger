@@ -1,4 +1,4 @@
-package wf.spring.justmessenger.model;
+package wf.spring.justmessenger.support;
 
 import lombok.*;
 import org.springframework.lang.Nullable;

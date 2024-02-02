@@ -1,4 +1,4 @@
-package wf.spring.justmessenger.model.converter;
+package wf.spring.justmessenger.support.converter;
 
 
 import org.bson.types.ObjectId;

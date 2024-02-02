@@ -23,7 +23,6 @@ public class RefreshToken {
     private ObjectId personId;
 
     @NotNull
-    @NotEmpty
     @Indexed(unique = true)
     private String token;
 

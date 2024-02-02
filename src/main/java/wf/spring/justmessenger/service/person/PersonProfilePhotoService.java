@@ -11,7 +11,7 @@ import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import wf.spring.justmessenger.entity.person.Person;
-import wf.spring.justmessenger.model.MessengerMessagingTemplate;
+import wf.spring.justmessenger.support.MessengerMessagingTemplate;
 import wf.spring.justmessenger.service.StorageService;
 
 import java.io.ByteArrayInputStream;

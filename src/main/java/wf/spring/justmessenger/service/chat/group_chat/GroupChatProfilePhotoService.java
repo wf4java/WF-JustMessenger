@@ -14,7 +14,7 @@ import wf.spring.justmessenger.dto.chat.group_chat.profile_photo.GroupChatProfil
 import wf.spring.justmessenger.dto.chat.group_chat.profile_photo.GroupChatProfilePhotoGetRqDTO;
 import wf.spring.justmessenger.entity.person.Person;
 import wf.spring.justmessenger.entity.chat.GroupChat;
-import wf.spring.justmessenger.model.MessengerMessagingTemplate;
+import wf.spring.justmessenger.support.MessengerMessagingTemplate;
 import wf.spring.justmessenger.service.StorageService;
 
 import java.io.ByteArrayInputStream;

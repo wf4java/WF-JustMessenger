@@ -11,7 +11,7 @@ import wf.spring.justmessenger.dto.person.edit.PersonPasswordChangeRqDTO;
 import wf.spring.justmessenger.dto.person.edit.PersonUsernameChangeRqDTO;
 import wf.spring.justmessenger.dto.person.edit.PersonUsernameUpdateRsDTO;
 import wf.spring.justmessenger.entity.person.Person;
-import wf.spring.justmessenger.model.MessengerMessagingTemplate;
+import wf.spring.justmessenger.support.MessengerMessagingTemplate;
 import wf.spring.justmessenger.model.exception.ConflictException;
 
 @Service

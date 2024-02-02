@@ -5,7 +5,7 @@ import lombok.*;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.*;
-import wf.spring.justmessenger.model.converter.ObjectIdPropertyValueConverter;
+import wf.spring.justmessenger.support.converter.ObjectIdPropertyValueConverter;
 
 @Getter
 @Setter

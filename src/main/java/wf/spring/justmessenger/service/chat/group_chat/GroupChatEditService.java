@@ -10,7 +10,7 @@ import wf.spring.justmessenger.dto.chat.group_chat.edit.GroupChatNameChangeRqDTO
 import wf.spring.justmessenger.dto.chat.group_chat.edit.GroupChatNameChangeRsDTO;
 import wf.spring.justmessenger.entity.person.Person;
 import wf.spring.justmessenger.entity.chat.GroupChat;
-import wf.spring.justmessenger.model.MessengerMessagingTemplate;
+import wf.spring.justmessenger.support.MessengerMessagingTemplate;
 
 @Service
 @RequiredArgsConstructor

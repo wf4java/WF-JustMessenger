@@ -12,7 +12,7 @@ import wf.spring.justmessenger.entity.person.Person;
 import wf.spring.justmessenger.entity.chat.GroupChat;
 import wf.spring.justmessenger.entity.chat.Message;
 import wf.spring.justmessenger.mapper.MessageMapper;
-import wf.spring.justmessenger.model.MessengerMessagingTemplate;
+import wf.spring.justmessenger.support.MessengerMessagingTemplate;
 import wf.spring.justmessenger.service.chat.AttachmentService;
 import wf.spring.justmessenger.service.chat.MessageService;
 

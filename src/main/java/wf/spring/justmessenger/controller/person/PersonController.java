@@ -22,11 +22,11 @@ public class PersonController {
 
 
 
-
     @GetMapping
     public PersonRsDTO get(@Valid PersonGetRqDTO personGetRqDTO, BindingResult bindingResult, @AuthenticationPrincipal Person principal) {
         if(bindingResult.hasErrors())
             throw new BadRequestException(bindingResult);
+
         return personService.getPersonById(personGetRqDTO.getPersonId(), principal);
     }
 

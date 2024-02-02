@@ -15,7 +15,7 @@ import wf.spring.justmessenger.dto.chat.group_chat.participant.*;
 import wf.spring.justmessenger.entity.chat.GroupChatParticipant;
 import wf.spring.justmessenger.entity.person.Person;
 import wf.spring.justmessenger.mapper.GroupChatParticipantMapper;
-import wf.spring.justmessenger.model.MessengerMessagingTemplate;
+import wf.spring.justmessenger.support.MessengerMessagingTemplate;
 import wf.spring.justmessenger.model.exception.NotFoundException;
 import wf.spring.justmessenger.model.exception.basic.BasicException;
 import wf.spring.justmessenger.repository.chat.GroupChatParticipantRepository;

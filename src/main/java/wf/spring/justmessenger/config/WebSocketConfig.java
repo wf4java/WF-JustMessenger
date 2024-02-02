@@ -7,7 +7,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.simp.config.ChannelRegistration;
 import org.springframework.messaging.simp.config.MessageBrokerRegistry;
 import org.springframework.web.socket.config.annotation.*;
-import wf.spring.justmessenger.model.MessengerMessagingTemplate;
 import wf.spring.justmessenger.security.auth.JwtAuthenticationManager;
 import wf.spring.justmessenger.security.subscribe.SubscribeAccessCheck;
 import wf.spring.justmessenger.service.security.SubscribeAccessService;

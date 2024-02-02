@@ -9,9 +9,7 @@ import java.util.List;
 
 public interface EsPersonRepository extends ElasticsearchRepository<EsPerson, ObjectId> {
 
-
     public List<EsPerson> findAllByUsername(String username, Pageable pageable);
-
 
 
 }

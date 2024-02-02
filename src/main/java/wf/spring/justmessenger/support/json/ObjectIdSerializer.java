@@ -1,4 +1,4 @@
-package wf.spring.justmessenger.model.json;
+package wf.spring.justmessenger.support.json;
 
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.JsonSerializer;

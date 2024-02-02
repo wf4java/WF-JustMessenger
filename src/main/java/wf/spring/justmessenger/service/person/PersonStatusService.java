@@ -16,7 +16,7 @@ import org.springframework.web.socket.messaging.SessionDisconnectEvent;
 import wf.spring.justmessenger.dto.person.status.PersonStatusGetRqDTO;
 import wf.spring.justmessenger.dto.person.status.PersonStatusRsDTO;
 import wf.spring.justmessenger.entity.person.Person;
-import wf.spring.justmessenger.model.MessengerMessagingTemplate;
+import wf.spring.justmessenger.support.MessengerMessagingTemplate;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
