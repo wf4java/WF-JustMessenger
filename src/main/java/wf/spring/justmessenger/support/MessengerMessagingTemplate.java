@@ -23,9 +23,6 @@ public class MessengerMessagingTemplate {
 
 
 
-    //-----------------------------------------------------------------------------------------------------------------------------------------
-
-
     public void convertAndSendToGroupChatMessage(String id, Object object) {
         simpMessagingTemplate.convertAndSend("/topic/group_chat/" + id, new SocketRsModel(GroupChatRsType.MESSAGE, object));
     }
@@ -76,19 +73,19 @@ public class MessengerMessagingTemplate {
     }
 
     public void convertAndSendToTopicOfUserStatus(String id, Object object) {
-        simpMessagingTemplate.convertAndSend("/topic/user/" + id + "/update", new SocketRsModel(PersonUpdateType.STATUS, object));
+        simpMessagingTemplate.convertAndSend("/topic/user/" + id + "/update", new SocketRsModel(PersonUpdateRsType.STATUS_UPDATE, object));
     }
 
     public void convertAndSendToTopicOfUserUsername(String id, Object object) {
-        simpMessagingTemplate.convertAndSend("/topic/user/" + id + "/update", new SocketRsModel(PersonUpdateType.USERNAME, object));
+        simpMessagingTemplate.convertAndSend("/topic/user/" + id + "/update", new SocketRsModel(PersonUpdateRsType.USERNAME_UPDATE, object));
     }
 
     public void convertAndSendToTopicOfUserProfilePhotoUpdate(String id) {
-        simpMessagingTemplate.convertAndSend("/topic/user/" + id + "/update", new SocketRsModel(PersonUpdateType.PROFILE_PHOTO_UPDATE));
+        simpMessagingTemplate.convertAndSend("/topic/user/" + id + "/update", new SocketRsModel(PersonUpdateRsType.PROFILE_PHOTO_UPDATE));
     }
 
     public void convertAndSendToTopicOfUserProfilePhotoDelete(String id) {
-        simpMessagingTemplate.convertAndSend("/topic/user/" + id + "/update", new SocketRsModel(PersonUpdateType.PROFILE_PHOTO_DELETE));
+        simpMessagingTemplate.convertAndSend("/topic/user/" + id + "/update", new SocketRsModel(PersonUpdateRsType.PROFILE_PHOTO_DELETE));
     }
 
     //-----------------------------------------------------------------------------------------------------------------------------------------
@@ -126,9 +123,9 @@ public class MessengerMessagingTemplate {
         PROFILE_PHOTO_DELETE;
     }
 
-    public static enum PersonUpdateType {
-        STATUS,
-        USERNAME,
+    public static enum PersonUpdateRsType {
+        STATUS_UPDATE,
+        USERNAME_UPDATE,
         PROFILE_PHOTO_UPDATE,
         PROFILE_PHOTO_DELETE
     }
