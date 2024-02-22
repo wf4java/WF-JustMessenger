@@ -1,7 +1,7 @@
 # WF-JustMessenger (Rest + WebSocket)
 **Just messenger on Java/Spring** 
 
-**Messenger link: [WF-JustMessenger](http://194.169.160.253) (Email for registration disabled)**
+**Messenger link: [WF-JustMessenger](http://wf4java.ru) (Email for registration disabled)**
 
 
 

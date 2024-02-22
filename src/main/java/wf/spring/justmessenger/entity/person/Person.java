@@ -26,7 +26,6 @@ public class Person implements Principal, DestinationUserNameProvider, UserDetai
 
 
     @Id
-    @NotNull
     private ObjectId id;
 
     @NotNull
